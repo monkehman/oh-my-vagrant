@@ -43,7 +43,44 @@ Happy hacking!\n",
 	}
 
 	# XXX: write your code here...
+	define plainfile ($user = "$title", $content) {
+     		file {"/home/${user}/.plain":
+        	ensure  => file,
+        	content => $content,
+        	mode    => 0777,
+        	owner   => $user,
+        	require => User[$user],
+      		}
+	}
+	define secretfile($user="$title", $secret_content){
+	        file {"/home/${user}/.sec":
+                ensure  => file,
+                content => $secret_content,
+                mode    => 0700,
+                owner   => $user,
+                require => User[$user],
+		}
+	}
+	user {'dexter': 
+     		ensure     => present,
+     		managehome => true,
+    	}
+    	
+	plainfile {'dexter':
+      		content => "Hello World.",
+    	}	
+	
+	secretfile {'dexter':
+		secret_content => "My precious",
+	}
+	
 
+
+
+
+
+
+    
 }
 
 # vim: ts=8
