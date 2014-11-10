@@ -30,8 +30,16 @@ Bonus:
 
 Happy hacking!\n",
 	}
+        #should try installing the 'cowsay' package with puppet.
+	package { "sl": ensure => "installed"}
+	
+	# Install three different packages, in three lines of code
+	package { "python" : ensure=> "installed"}
+	package { "nfs-utils" : ensure => "installed"}
+	package { "httpd" : ensure=> "installed"}
+	
+	package {[ "tinyproxy.", "vim", "nmap-ncat" ] : ensure => "installed" }
 
-	# XXX: write your code here...
 
 }
 
