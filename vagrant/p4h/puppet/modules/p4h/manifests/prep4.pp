@@ -38,8 +38,29 @@ Level 42:
 Happy hacking!\n",
 	}
 
-	# XXX: write your code here...
-
+	$foo="foo"
+	$bar="bar"
+        $quote="An ideal language allows us to express easily what is useful for the programming task, and at the same time makes it difficult to write what leads to incomprehensible or incorrect programs.
+    -Nico Habermanni\n "	
+	# template to spit out the hostname
+	notifiy { "hostname": 
+		message => inline_template("This host is [<%= @hostname%>]")
+	}
+	
+	#creates file
+	file{ "${foo}/${bar}": ensure => directory
+	}
+	file{ "${foo}/${bar}/quote.txt" :
+		ensure => file,
+		content => "${qoute}"
+	}
+	
+	#creates template
+	file {"/etc/num4.conf" :
+		ensure => file,
+		content => template ("p4h/num4.erb")
+	}
+	
 }
 
-# vim: ts=8
+#vim : ts=8
