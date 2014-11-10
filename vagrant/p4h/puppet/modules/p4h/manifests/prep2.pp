@@ -32,7 +32,17 @@ Bonus:
 Happy hacking!\n",
 	}
 
-	# XXX: write your code here...
+	user { "dexter":
+      		ensure     => "present",
+      		managehome => true,
+    		home => "/home/dexter",
+		}		
+    	file { '/home/dexter/joke.laugh' : 
+		ensure => file,
+		content =>
+		"A clear conscience is usually the sign of a bad memory.\n",
+		require => User['dexter'],
+    	}
 
 }
 
