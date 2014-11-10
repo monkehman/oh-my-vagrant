@@ -37,8 +37,15 @@ Bonus:
 
 Happy hacking!\n",
 	}
-
-	# XXX: write your code here...
+	$my_name = 'Dexter'
+	$my_message = $my_name ? {
+		'James ' => "Hi $my_name my name is also $my_name",
+		default =>  "Hi my name is $my_name",
+		}
+	$two = 'two'
+	$twopotato = "some value"
+	notify {'threepotatofour' : 
+		message => "onepotato${two}potato"}
 
 }
 
