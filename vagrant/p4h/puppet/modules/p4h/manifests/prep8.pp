@@ -47,6 +47,25 @@ Happy hacking!\n",
 
 	# XXX: write your code here...
 
+	
+  
+  exec { "echo This uses the $SHELL shell >> /var/tmp/shell.txt" :
+    creates  => "/var/tmp/shell.txt",
+    path     => "/usr/bin" 
+  }
+
+  exec {"echo This is running $SHELL >> /var/tmp/shell1.txt":
+   	path => "/usr/bin",
+	 onlyif =>"test /usr/bin/echo $shell == '/bin/bash'",
+    }
+
+  exec {"yum install -y vim":
+    path => "/usr/bin/yum",
+    unless =>"/usr/bin/rpm -qa vim",
+    }
+
+
+
 }
 
 # vim: ts=8
